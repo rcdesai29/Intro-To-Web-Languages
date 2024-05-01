@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input
+      type="text"
+      id="txt-price"
+      placeholder="Enter the price of the item"
+    />
+    <input
+      type="text"
+      id="txt-quantity"
+      placeholder="Enter the quanity of the item"
+    />
+    <button id="btn-submit">Calculate</button>
+    <div id="output"></div>
+
+    <script>
+      // Retrieve the HTML elements and store them in variables
+      var priceInput = document.getElementById("txt-price"); // Input field for item price
+      var quantityInput = document.getElementById("txt-quantity"); // Input field for item quantity
+      var submitBtn = document.getElementById("btn-submit"); // Button to trigger calculation
+      var output = document.getElementById("output"); // Div where the result will be displayed
+
+      // Add an event listener to the submit button that triggers on click
+      submitBtn.addEventListener("click", function () {
+        var price = priceInput.value; // Get the price input by the user as a string
+        var quanity = quantityInput.value; // Get the quantity input by the user as a string
+        price = +price; // Convert the price from a string to a number
+        quanity = +quanity; // Convert the quantity from a string to a number
+
+        // Check if the entered price or quantity are not numbers
+        if (Number.isNaN(price) || Number.isNaN(quanity)) {
+          output.innerHTML = "Invalid input"; // Display error message if either is not a valid number
+          return;
+        }
+
+        // Calculate the total price
+        var totalPrice = price * quanity; // Multiply the price by the quantity
+        totalPrice = Math.round(totalPrice * 100) / 100; // Rounding
+
+        // Display the total price in the output div
+        output.innerHTML =
+          quanity + " items at $" + price + " each is $" + totalPrice;
+      });
+    </script>
+  </body>
+</html>
